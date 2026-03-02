@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Danzz Market</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: white;
+    text-align: center;
+}
+
+header {
+    background: #ff0080;
+    padding: 15px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.status {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.dot {
+    height: 12px;
+    width: 12px;
+    background-color: #00ff00;
+    border-radius: 50%;
+    display: inline-block;
+    animation: blink 1s infinite;
+    box-shadow: 0 0 8px #00ff00;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.2; }
+    100% { opacity: 1; }
+}
+
+.counter {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+.card {
+    background: #1c1c1c;
+    padding: 20px;
+    margin: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ff0080;
+}
+
+.price {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: red;
+    margin-right: 8px;
+}
+
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.buy {
+    background: #00cc66;
+    color: white;
+}
+
+.cart {
+    background: orange;
+    color: white;
+}
+
+.music-btn {
+    background: #ff0080;
+    color: white;
+    margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<header>Danzz Market 🛒</header>
+
+<div class="status">
+    Status: <span class="dot"></span> Online
+</div>
+
+<div class="counter">
+    Jumlah Buyer: <span id="buyerCount">0</span>
+</div>
+
+<button class="music-btn" onclick="toggleMusic()">🎵 Play / Pause Music</button>
+
+<div class="container">
+
+<div class="card">
+    <h2>Apk Spam</h2>
+    <div class="price">
+        <span class="old-price">Rp15.000</span> 🔥 Rp10.000
+    </div>
+    <button class="cart">Masuk Keranjang</button>
+    <button class="buy" onclick="buyProduct('Apk Spam')">Beli Sekarang</button>
+</div>
+
+<div class="card">
+    <h2>Apk Unban V2</h2>
+    <div class="price">Rp35.000</div>
+    <button class="cart">Masuk Keranjang</button>
+    <button class="buy" onclick="buyProduct('Apk Unban V2')">Beli Sekarang</button>
+</div>
+
+</div>
+
+<!-- GANTI link lagu di bawah dengan link mp3 kamu -->
+<audio id="bgMusic" loop>
+    <source src="https://files.catbox.moe/6t1f3f.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+let buyer = localStorage.getItem("buyerCount") || 0;
+document.getElementById("buyerCount").innerText = buyer;
+
+let music = document.getElementById("bgMusic");
+
+function toggleMusic() {
+    if (music.paused) {
+        music.play();
+    } else {
+        music.pause();
+    }
+}
+
+function buyProduct(productName) {
+    buyer++;
+    localStorage.setItem("buyerCount", buyer);
+    document.getElementById("buyerCount").innerText = buyer;
+
+    let nomor = "6285707277941";
+    let pesan = encodeURIComponent("Mas, saya mau beli " + productName + " mohon segera diproses🙏🏻");
+
+    window.location.href = "https://wa.me/" + nomor + "?text=" + pesan;
+}
+</script>
+
+</body>
+</html>
